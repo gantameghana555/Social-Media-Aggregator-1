@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>SocialSphere – Social Media Aggregator</title>
+    <meta name="description" content="SocialSphere aggregates posts from multiple social platforms into one clean feed." />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#feed" tabindex="0">Skip to feed</a>
+
+    <header class="app-header">
+      <div class="container header-inner">
+        <div class="brand">
+          <div class="logo" aria-hidden="true">💬</div>
+          <div class="title">
+            <h1>SocialSphere</h1>
+            <p class="subtitle">One feed. Every platform.</p>
+          </div>
+        </div>
+        <nav class="header-actions" aria-label="Global">
+          <button id="themeToggle" class="btn btn-ghost" aria-pressed="false" title="Toggle dark mode">🌗</button>
+          <button class="btn btn-primary" disabled title="Coming soon">Connect Accounts</button>
+        </nav>
+      </div>
+    </header>
+
+    <main class="container app-main">
+      <section class="panel" aria-labelledby="filtersHeading">
+        <div class="panel-header">
+          <h2 id="filtersHeading">Filters</h2>
+          <button id="clearFilters" class="btn btn-ghost small" type="button">Clear</button>
+        </div>
+
+        <div class="filters-grid">
+          <div class="filter-block">
+            <label class="label" for="searchInput">Keyword</label>
+            <div class="input-with-icon">
+              <span aria-hidden="true">🔎</span>
+              <input id="searchInput" type="search" placeholder="Search posts, users, #hashtags" autocomplete="off" />
+            </div>
+          </div>
+
+          <div class="filter-block">
+            <span class="label">Platforms</span>
+            <div id="platformFilters" class="chip-row" role="group" aria-label="Platforms">
+              <!-- chips will be rendered by JS -->
+            </div>
+          </div>
+
+          <div class="filter-block">
+            <label class="label" for="sortSelect">Sort by</label>
+            <select id="sortSelect">
+              <option value="newest">Newest</option>
+              <option value="oldest">Oldest</option>
+              <option value="engagement">Most engagement</option>
+            </select>
+          </div>
+
+          <!-- New: De-duplication & Merge controls -->
+          <div class="filter-block">
+            <span class="label">Duplicates</span>
+            <div class="toggles-row" role="group" aria-label="Duplicates">
+              <label class="toggle">
+                <input id="dedupeToggle" type="checkbox" />
+                <span>De-duplicate</span>
+              </label>
+              <label class="toggle">
+                <input id="mergeToggle" type="checkbox" disabled />
+                <span>Merge view</span>
+              </label>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel" aria-labelledby="feedHeading">
+        <div class="panel-header">
+          <h2 id="feedHeading">Feed</h2>
+          <div class="feed-meta">
+            <span id="resultsCount" class="muted">0 results</span>
+          </div>
+        </div>
+
+        <div id="feed" class="feed" aria-live="polite" aria-busy="false">
+          <!-- cards rendered by JS -->
+        </div>
+
+        <div class="load-more">
+          <button id="loadMore" class="btn" type="button">Load more</button>
+        </div>
+      </section>
+    </main>
+
+    <footer class="app-footer">
+      <div class="container footer-inner">
+        <span class="muted">© <span id="year"></span> SocialSphere</span>
+        <nav class="footer-nav" aria-label="Footer">
+          <a href="#" aria-disabled="true">Privacy</a>
+          <a href="#" aria-disabled="true">Terms</a>
+          <a href="#" aria-disabled="true">Help</a>
+        </nav>
+      </div>
+    </footer>
+
+    <script src="./app.js" defer></script>
+  </body>
+</html> 
